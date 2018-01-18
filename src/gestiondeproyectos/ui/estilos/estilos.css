@@ -1,0 +1,124 @@
+/*
+ESTILOS VENTANAS GESTIÓN DE PROYECTOS
+*/
+/* 
+    Created on : 26-oct-2017, 19:30:07
+    Author     : Arantzazu Azkona Villaverde
+*/
+
+.root{
+    -fx-background-image: url(fondo.jpg);
+    -fx-background-size: cover;
+    -fx-focus-color: #2A5058;
+}
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#3887a4, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0) , 0, 0.0 , 0 ,0 );
+}
+#barraMenu{
+    -fx-background-color: linear-gradient(#3887a4, #2A5058);
+    -fx-text-fill: white;
+}
+.menu .label{
+    -fx-text-fill: white;
+}
+.menu:hover{
+    -fx-background-color: #2A5058;
+}
+#lblTitulo{
+    -fx-text-fill: #2A5058;    
+}
+.table-row-cell:vencidas{
+    -fx-text-fill:#ffcc00;
+}
+.column-header{
+    -fx-text-fill:#2A5058;
+}
+.textfield:focus{
+    -fx-border-color: #3887a4;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+.textfield{
+    -fx-border-color: #3887a4;
+}
+.dialog{
+	    -fx-background-image: url(fondo.jpg);
+    -fx-background-size: cover;
+    -fx-focus-color: #2A5058;
+}
+#btnAnyadir{
+    -fx-background-image: url("add.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;    
+    -fx-background-size: 12px 12px;    
+    -fx-background-position: 7%;
+    -fx-padding: 0px 0px 0px 8px;
+    -fx-min-width: 94px;
+}
+#btnAnadir{
+    -fx-background-image: url("add.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;    
+    -fx-background-size: 12px 12px;    
+    -fx-background-position: 7%;
+    -fx-padding: 0px 0px 0px 8px;
+    -fx-min-width: 94px;
+}
+#btnBuscar{
+    -fx-background-image: url("search.png");
+   -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;    
+    -fx-background-size: 12px 12px;    
+    -fx-background-position: 7%;
+    -fx-padding: 0px 0px 0px 8px;
+    -fx-min-width: 94px;
+    
+}
+#btnBuscar2{
+    -fx-background-image: url("search.png");
+   -fx-background-repeat: no-repeat;
+       
+    -fx-background-size: 12px 12px;    
+    -fx-background-position: 50%;
+    -fx-padding: 0px 0px 0px 8px;
+    -fx-min-width: 30px;
+    
+}
+#btnModificar{
+    -fx-background-image: url("edit.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;    
+    -fx-background-size: 12px 12px;    
+    -fx-background-position: 7%; 
+    -fx-padding: 0px 0px 0px 8px;
+        -fx-min-width: 94px;
+}
+#btnEliminar{
+        -fx-background-image: url("delete.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;    
+    -fx-background-size: 12px 12px;    
+    -fx-background-position: 7%; 
+    -fx-padding: 0px 0px 0px 8px;
+        -fx-min-width: 94px;
+}
+#btnSalir{
+    -fx-background-image: url("exit.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;    
+    -fx-background-size: 12px 12px;    
+    -fx-background-position: 10%; 
+    -fx-min-width: 94px;
+}
+
+#opcion1{
+     -fx-text-fill: white;
+}
+

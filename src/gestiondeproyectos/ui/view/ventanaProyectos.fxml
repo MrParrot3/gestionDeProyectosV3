@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../estilos/estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestiondeproyectos.ui.controller.VentanaProyectosController">
+   <children>
+      <MenuBar fx:id="barraMenu" prefHeight="26.0" prefWidth="809.0">
+        <menus>
+          <Menu fx:id="menuClientes" mnemonicParsing="false" onHiding="#handleMenuClientes" onShowing="#handleMenuClientes" text="Clientes" />
+          <Menu fx:id="menuFacturas" mnemonicParsing="false" onHiding="#handleMenuFacturas" onShowing="#handleMenuFacturas" text="Facturas" />
+          <Menu fx:id="menuServicios" mnemonicParsing="false" onHiding="#handleMenuServicios" onShowing="#handleMenuServicios" text="Servicios" />
+          
+          
+        </menus>
+      </MenuBar>
+      <Label alignment="CENTER" layoutX="30.0" layoutY="55.0" prefHeight="54.0" prefWidth="760.0" text="Proyectos" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <HBox prefHeight="70.0" prefWidth="760.0">
+         <children>
+            <VBox layoutX="11.0" layoutY="11.0" prefHeight="90.0" prefWidth="224.0">
+               <children>
+                  <Label text="Cliente:">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font></Label>
+                  <TextField fx:id="tfCliente" prefHeight="25.0" prefWidth="102.0">
+                     <opaqueInsets>
+                        <Insets left="10.0" right="10.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label layoutX="15.0" layoutY="10.0" text="Concepto:">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfConcepto" layoutX="15.0" layoutY="30.0" prefHeight="25.0" prefWidth="102.0">
+                     <opaqueInsets>
+                        <Insets left="10.0" right="10.0" />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="140.0" layoutY="11.0" prefHeight="107.0" prefWidth="173.0">
+               <children>
+                  <Label text="Horas estimadas:">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font></Label>
+                  <TextField fx:id="tfHorasEstimadas" prefHeight="25.0" prefWidth="258.0" style="-fx-border-style: 1px solid #ccc;">
+                     <opaqueInsets>
+                        <Insets left="10.0" right="10.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label layoutX="15.0" layoutY="10.0" text="Horas finales:">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfHorasfinales" layoutX="15.0" layoutY="30.0" prefHeight="25.0" prefWidth="258.0" style="-fx-border-style: 1px solid #ccc;">
+                     <opaqueInsets>
+                        <Insets left="10.0" right="10.0" />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="550.0" layoutY="11.0" prefHeight="107.0" prefWidth="154.0">
+               <children>
+                  <Label text="Importe:">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font></Label>
+                  <TextField fx:id="tfImporte" prefHeight="25.0" prefWidth="124.0">
+                     <opaqueInsets>
+                        <Insets left="10.0" right="10.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label layoutX="15.0" layoutY="10.0" text="Importe final:">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfImporteFinal" layoutX="15.0" layoutY="30.0" prefHeight="25.0" prefWidth="124.0">
+                     <opaqueInsets>
+                        <Insets left="10.0" right="10.0" />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="55.0" prefWidth="112.0" style="-fx-border: #ccc; -fx-border: 1px solid #ccc;">
+               <children>
+                  <Label text="Fecha entrega:">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dpFechaEntrega" prefHeight="24.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <Label layoutX="10.0" layoutY="10.0" text="Fecha final:">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <DatePicker fx:id="dpFechaFinal" layoutX="10.0" layoutY="30.0" prefHeight="24.0" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="601.0" layoutY="21.0" prefHeight="77.0" prefWidth="89.0">
+               <children>
+                  <Button fx:id="btnAnadir" lineSpacing="10.0" minHeight="22.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="77.0" text="Añadir">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnModificar" alignment="CENTER" contentDisplay="CENTER" disable="true" minHeight="22.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="77.0" text="Modificar" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnEliminar" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="15.0" layoutY="37.0" minHeight="22.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="77.0" text="Eliminar" textAlignment="CENTER">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <VBox prefHeight="67.0" prefWidth="760.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="760.0">
+               <children>
+                  <VBox prefHeight="44.0" prefWidth="171.0">
+                     <children>
+                        <Label text="Cif cliente:">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfCifCliente" style="-fx-border-style: none; -fx-border-radius: 0;">
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <CheckBox fx:id="cbProyectosFinal" mnemonicParsing="false" text="Proyectos finalizados">
+                     <HBox.margin>
+                        <Insets left="10.0" right="20.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="cbProyectosSinFinal" mnemonicParsing="false" text="Proyectos sin finalizar">
+                     <HBox.margin>
+                        <Insets left="10.0" right="20.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <Button fx:id="btnBuscar" mnemonicParsing="false" text="Buscar">
+                     <HBox.margin>
+                        <Insets left="160.0" />
+                     </HBox.margin></Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin>
+      </VBox>
+      <TableView fx:id="tvProyectos" prefHeight="261.0" prefWidth="806.0">
+        <columns>
+          <TableColumn fx:id="tvcolN" prefWidth="37.0" text="Nº" />
+          <TableColumn fx:id="tvcolCliente" prefWidth="62.0" text="Cliente " />
+            <TableColumn fx:id="tvcolConcepto" prefWidth="62.0" text="Concepto" />
+            <TableColumn fx:id="tvcolServicios" prefWidth="75.0" text="Servicios" />
+            <TableColumn fx:id="tvcolHorasEstimadas" prefWidth="129.0" text="Horas estimadas" />
+            <TableColumn fx:id="tvcolFechaEntrega" minWidth="0.0" prefWidth="129.0" text="Fecha estimada" />
+            <TableColumn fx:id="tvcolImporte" minWidth="0.0" prefWidth="69.0" text="Importe" />
+            <TableColumn fx:id="tvcolHorasFinales" prefWidth="103.0" text="Horas finales" />
+            <TableColumn fx:id="tvcolFechaFinal" prefWidth="103.0" text="Fecha final" />
+            <TableColumn fx:id="tvcolImporteFinal" prefWidth="52.0" text="Importe final" />
+        </columns>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" />
+         </VBox.margin>
+      </TableView>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="81.0" prefWidth="760.0">
+         <children>
+            <Button fx:id="btnSalir" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="22.0" prefWidth="77.0" text="Salir" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets bottom="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

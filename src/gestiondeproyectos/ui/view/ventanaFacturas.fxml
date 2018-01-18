@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestiondeproyectos.ui.controller.VentanaFacturasController">
+   <children>
+      <MenuBar fx:id="barraMenu" prefHeight="26.0" prefWidth="809.0">
+         <menus>
+            <Menu fx:id="menuClientes" mnemonicParsing="false" onHiding="#handleMenuClientes" onShowing="#handleMenuClientes" text="Clientes" />
+            <Menu fx:id="menuProyectos" mnemonicParsing="false" onHiding="#handleMenuProyectos" onShowing="#handleMenuProyectos" text="Proyectos" />
+            <Menu fx:id="menuServicios" mnemonicParsing="false" onHiding="#handleMenuServicios" onShowing="#handleMenuServicios" text="Servicios" />
+         </menus>
+      </MenuBar>
+      <Label alignment="CENTER" contentDisplay="TOP" layoutY="55.0" prefHeight="54.0" prefWidth="800.0" text="Facturas">
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <HBox prefHeight="101.0" prefWidth="760.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="180.0">
+               <children>
+                  <Label fx:id="lblNumFactura" text="Nº:" />
+                  <TextField fx:id="txtNumFactura" />
+                  <Label fx:id="lblCliente" text="NIF Cliente:">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></Label>
+                  <TextField fx:id="txtCliente" />
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="180.0">
+               <children>
+                  <Label fx:id="lblFechaEmision" text="Fecha de emisión:" />
+                  <DatePicker fx:id="dateFechaEmision" />
+                  <Label fx:id="lblImporte" text="Importe:">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></Label>
+                  <TextField fx:id="txtImporte" />
+               </children>
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="180.0">
+               <children>
+                  <Label fx:id="lblFechaVencimiento" text="Fecha de vencimiento:" />
+                  <DatePicker fx:id="dateFechaVencimiento">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <CheckBox fx:id="cbEstado" mnemonicParsing="false" text="pagada">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></CheckBox>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="91.0" prefWidth="167.0" spacing="5.0">
+               <children>
+                  <Button fx:id="btnAnadir" disable="true" mnemonicParsing="false" onAction="#anyadirFactura" prefHeight="22.0" prefWidth="80.0" text="Añadir">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnModificar" disable="true" mnemonicParsing="false" onAction="#modificarFactura" prefHeight="22.0" prefWidth="80.0" text="Modificar">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#borrarFactura" prefHeight="22.0" prefWidth="80.0" text="Eliminar" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets top="10.0" />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="36.0" prefWidth="800.0">
+         <children>
+            <VBox minWidth="-Infinity" prefHeight="44.0" prefWidth="180.0">
+               <children>
+                  <Label fx:id="lblFiltarCliente" text="Cliente:" />
+                  <TextField fx:id="txtFiltrarCliente" prefHeight="26.0" prefWidth="180.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="44.0" prefWidth="180.0">
+               <children>
+                  <Label fx:id="lblFechaDesde" text="Vencimiento desde:" />
+                  <DatePicker fx:id="dateFechaDesde" prefHeight="26.0" prefWidth="180.0" />
+               </children>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="44.0" prefWidth="180.0">
+               <children>
+                  <Label fx:id="lblFechaHasta" text="hasta:" />
+                  <DatePicker fx:id="datFechaHasta" />
+               </children>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="BOTTOM_LEFT" layoutX="563.0" layoutY="10.0" prefHeight="44.0" prefWidth="100.0">
+               <children>
+                  <CheckBox fx:id="cbFiltarFacturasPagadas" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="pagada" />
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="59.0" prefWidth="70.0">
+               <children>
+                  <Button fx:id="btnBuscar" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buscarFacturas" prefHeight="22.0" prefWidth="80.0" text="Buscar" />
+               </children>
+               <HBox.margin>
+                  <Insets bottom="5.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" top="30.0" />
+         </VBox.margin></HBox>
+      <TableView fx:id="tabla" prefHeight="286.0" prefWidth="760.0">  
+                
+        <columns>
+          <TableColumn fx:id="columNumFactura" prefWidth="96.0" text="Nº" />
+          <TableColumn fx:id="columCliente" prefWidth="232.0" text="Cliente" />
+            <TableColumn fx:id="columFechaEmision" prefWidth="139.0" text="Fecha de emisión" />
+            <TableColumn fx:id="columFechaVencimiento" prefWidth="141.0" text="Fecha de vencimiento" />
+            <TableColumn fx:id="columImporte" prefWidth="152.0" text="Importe" />
+        </columns>
+         <VBox.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="5.0" />
+         </VBox.margin>
+      </TableView>
+      <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#salir" prefHeight="22.0" prefWidth="77.0" text="Salir">
+         <VBox.margin>
+            <Insets bottom="20.0" left="690.0" right="20.0" top="10.0" />
+         </VBox.margin>
+      </Button>
+   </children>
+   <opaqueInsets>
+      <Insets top="50.0" />
+   </opaqueInsets>
+</VBox>
