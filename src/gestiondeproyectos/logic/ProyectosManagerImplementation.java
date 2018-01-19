@@ -28,12 +28,14 @@ public class ProyectosManagerImplementation implements ProyectosManager{
         webClient=new ProyectoRESTClient();
     }
     
+    
     @Override
     public Collection getAllProyectos() {
         LOGGER.info("ProyectosManager: Finding all proyectos from REST service (XML).");
         Collection<ProyectosBean> proyectos = webClient.findAll_XML(new GenericType<Collection<ProyectosBean>>() {});
         return proyectos;
     }
+    
 
     @Override
     public ProyectosBean setNuevoProyecto(String cliente, String concepto, Integer horasEstimadas, Integer horasFinales, float importe, float importeFinal, String fechaEntrega, String fechaFinal) {
