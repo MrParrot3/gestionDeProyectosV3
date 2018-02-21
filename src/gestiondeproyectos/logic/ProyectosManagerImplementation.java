@@ -32,6 +32,7 @@ public class ProyectosManagerImplementation implements ProyectosManager{
     private ClienteRESTClient cwebClient;
     private static final Logger LOGGER=Logger.getLogger("javafxapplicationud3example");
     
+    private static final Logger logger = Logger.getLogger("implementation.class");
     
     public ProyectosManagerImplementation(){
         pwebClient = new ProyectoRESTClient();
@@ -65,7 +66,7 @@ public class ProyectosManagerImplementation implements ProyectosManager{
     
     
     public ProyectosBean setNuevoProyecto(ClienteBean cliente, String concepto, Collection<ServicioBean> servicios, Integer horasEstimadas, Integer horasFinales, float importe, float importeFinal, String fechaEntrega, String fechaFinal) {
-        ProyectosBean proyecto = null;
+        ProyectosBean proyecto = new ProyectosBean();
         proyecto.setCliente(cliente);
         proyecto.setConcepto(concepto);
         proyecto.setServicios(servicios);      
@@ -75,6 +76,7 @@ public class ProyectosManagerImplementation implements ProyectosManager{
         proyecto.setImporteFinal(importeFinal);
         proyecto.setFechaEntrega(fechaEntrega);
         proyecto.setFechaFinal(fechaFinal);
+        logger.info(proyecto.getNProyecto()+" "+proyecto.getCliente().getNif()+" "+proyecto.getConcepto());
         LOGGER.log(Level.INFO,"ProyectosManager: Creating proyecto {0}.",proyecto.getNProyecto());
         pwebClient.create_XML(proyecto);
         return proyecto;

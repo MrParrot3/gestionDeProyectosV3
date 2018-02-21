@@ -353,7 +353,7 @@ public class VentanaProyectosController {
         btnEliminar.setDisable(true);
         btnModificar.setDisable(true);
         ClienteBean cliente = null;
-        Collection<ServicioBean> servicios = null;
+        Collection<ServicioBean> servicios = new ArrayList<ServicioBean>();
         ProyectosBean proyecto = new ProyectosBean();
         if(this.tfCliente.getText().trim().equals("") || this.tfConcepto.getText().trim().equals("")
             || this.tfHorasEstimadas.getText().trim().equals("") || 
@@ -387,6 +387,7 @@ public class VentanaProyectosController {
                 Float.parseFloat(tfImporte.getText());    
                 dpFechaEntrega.getValue().format(formatter);
                 dpFechaFinal.getValue().format(formatter);
+                
                 ServicioBean aux = new ServicioBean();
                 aux.setId(1);
                 aux.setNombre("mantenimiento");
@@ -401,7 +402,7 @@ public class VentanaProyectosController {
                     }
                 }
                 
-                proyecto = proyectosManager.setNuevoProyecto(cliente,
+                proyectosManager.setNuevoProyecto(cliente,
                         tfConcepto.getText(), servicios, Integer.parseInt(tfHorasEstimadas.getText()),
                         hf, Float.parseFloat(tfImporte.getText()), imf,
                         dpFechaEntrega.getValue().format(formatter), dpFechaFinal.getValue().format(formatter));
