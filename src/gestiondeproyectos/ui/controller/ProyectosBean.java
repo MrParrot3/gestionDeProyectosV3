@@ -6,35 +6,47 @@
 package gestiondeproyectos.ui.controller;
 
 import java.beans.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.AbstractCollection;
+import java.util.Collection;
+import java.util.Iterator;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.print.Collation;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author iker
  */
-public class ProyectosBean  {
+@XmlRootElement(name="proyecto")
+public class ProyectosBean implements Serializable {
     
     private final SimpleIntegerProperty nProyecto;
-    private final SimpleStringProperty cliente;
+    private final SimpleObjectProperty<ClienteBean> cliente;
     private final SimpleStringProperty concepto;
-    private final SimpleStringProperty servicios;
     private final SimpleIntegerProperty horasEstimadas;
     private final SimpleIntegerProperty horasFinales;
     private final SimpleFloatProperty importe;
     private final SimpleFloatProperty importeFinal;
     private final SimpleStringProperty fechaEntrega;
     private final SimpleStringProperty fechaFinal;
-   
+    private Collection<ServicioBean> servicios;
     
-    public ProyectosBean(Integer nProyecto, String cliente, String concepto, String servicios, Integer horasEstimadas, Integer horasFinales,
-    float importe, float importeFinal, String fechaEntrega, String fechaFinal ) {
+    public ProyectosBean(Integer nProyecto, ClienteBean cliente, String concepto, Integer horasEstimadas, Integer horasFinales,
+    float importe, float importeFinal, String fechaEntrega, String fechaFinal) {
+        
         this.nProyecto = new SimpleIntegerProperty(nProyecto);
-        this.cliente = new SimpleStringProperty(cliente);
+        this.cliente = new SimpleObjectProperty<>(cliente);
         this.concepto = new SimpleStringProperty(concepto);
-        this.servicios  = new SimpleStringProperty(servicios);
         this.horasEstimadas = new SimpleIntegerProperty(horasEstimadas);
         this.horasFinales = new SimpleIntegerProperty(horasFinales);
         this.importe = new SimpleFloatProperty(importe);
@@ -43,9 +55,22 @@ public class ProyectosBean  {
         this.fechaFinal = new SimpleStringProperty(fechaFinal);
         
     }
-
     
+    public ProyectosBean(){
+        
+        this.nProyecto = new SimpleIntegerProperty();
+        this.cliente = new SimpleObjectProperty();
+        this.concepto = new SimpleStringProperty();
+        this.horasEstimadas = new SimpleIntegerProperty();
+        this.horasFinales = new SimpleIntegerProperty();
+        this.importe = new SimpleFloatProperty();
+        this.importeFinal = new SimpleFloatProperty();
+        this.fechaEntrega = new SimpleStringProperty();
+        this.fechaFinal = new SimpleStringProperty();
+       
+    }
     
+    @XmlElement(name="id")
     public Integer getNProyecto(){
         return this.nProyecto.get();
     }
@@ -53,12 +78,13 @@ public class ProyectosBean  {
     public void setNProyecto(Integer nProyecto){
         this.nProyecto.set(nProyecto);
     }
-
-    public String getCliente() {
-        return this.cliente.get();
+    
+    @XmlElement(name="cliente")
+    public ClienteBean getCliente(){
+        return cliente.get();
     }
     
-    public void setCliente(String cliente){
+    public void setCliente(ClienteBean cliente){
         this.cliente.set(cliente);
     }
     
@@ -70,12 +96,13 @@ public class ProyectosBean  {
         this.concepto.set(concepto);
     }
     
-    public String getServicios(){
-        return this.servicios.get();
+    @XmlElement(name="servicio")
+    public Collection<ServicioBean> getServicios(){
+        return servicios;
     }
     
-    public void setServicios(String servicios){
-        this.servicios.set(servicios);
+    public void setServicios(Collection<ServicioBean> servicios){
+        this.servicios = servicios;
     }
     
     public Integer getHorasEstimadas(){
@@ -94,6 +121,7 @@ public class ProyectosBean  {
         this.horasFinales.set(horasFinales);
     }
     
+    @XmlElement(name="importeEstimado")
     public Float getImporte(){
         return this.importe.get();
     }
@@ -110,6 +138,7 @@ public class ProyectosBean  {
         this.importeFinal.set(importeFinal);
     }
     
+    @XmlElement(name="fechaEstimada")
     public String getFechaEntrega(){
         return this.fechaEntrega.get();
     }
@@ -125,12 +154,6 @@ public class ProyectosBean  {
     public void setFechaFinal(String fechaFinal){
         this.fechaFinal.set(fechaFinal);
     }
-    
-
-    
-    
-    
-    
     
     
 }

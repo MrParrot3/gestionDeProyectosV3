@@ -428,7 +428,7 @@ public class VentanaFacturasController  {
             controlador.setManager(facturasManager,proyectosManager,clientesManager);
             controlador.setStage(stage);
             ((Stage)btnSalir.getScene().getWindow()).close();
-            controlador.initStage(root);
+                controlador.initStage(root);
         } catch (IOException ex) {
             Logger.getLogger(VentanaProyectosController.class.getName()).log(Level.SEVERE, null, ex);
         }
