@@ -184,7 +184,7 @@ public class VentanaProyectosController {
         menuServicios.getItems().add(itemS);
         MenuItem itemF = new MenuItem();
         menuFacturas.getItems().add(itemF);
-        stage.show();
+            stage.show();
             
     }
     
