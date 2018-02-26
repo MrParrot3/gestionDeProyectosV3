@@ -7,6 +7,7 @@ package gestiondeproyectos.rest;
 
 import gestiondeproyectos.ui.controller.ProyectosBean;
 import java.util.Collection;
+import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
@@ -59,7 +60,7 @@ public class ProyectoRESTClient {
         webTarget.path(java.text.MessageFormat.format("{0}", new Object[]{id})).request().delete();
     }
 
-    public <T> T findAll_XML(Class<T> responseType) throws ClientErrorException {
+    public <T> T findAll_XML(GenericType<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
     }
@@ -67,7 +68,5 @@ public class ProyectoRESTClient {
     public void close() {
         client.close();
     }
-
-    
     
 }

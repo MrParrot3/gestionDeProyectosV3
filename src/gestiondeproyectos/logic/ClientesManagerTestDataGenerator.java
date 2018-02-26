@@ -1,4 +1,3 @@
-
 package gestiondeproyectos.logic;
 
 import gestiondeproyectos.ui.controller.ClienteBean;
@@ -24,13 +23,17 @@ public class ClientesManagerTestDataGenerator implements ClientesManager{
         for(int i=0;i<10;i++){
             //Los clientes que tienen como indice un numero par son morosos.
             if(i%2==0){
-               clientes.add(new ClienteBean("MorosoNIF000"+i,"Miguel"+i,"Euskal Herria,18 "+i+"ªD"
-                        ,"65972040"+i,"miguel"+i+"@gmail.es","WEB"+i,"Federico"+1
-                        ,"63258917"+i,"federico"+i+"@gmail.com"));
+               /*
+                clientes.add(new ClienteBean("MorosoNIF000"+i,"Miguel"+i,"Euskal Herria,18 "+i+"ªD"
+                        ,65972040+i,"miguel"+i+"@gmail.es","WEB"+i,"Federico"+1
+                        ,63258917+i,"federico"+i+"@gmail.com"));
+                */
             } else {
+                /*
                 clientes.add(new ClienteBean("NIF000"+i,"Miguel"+i,"Euskal Herria,18"+i+"ªD"
-                        ,"65972040"+i,"miguel"+i+"@gmail.es","WEB"+i,"Federico"+1
-                        ,"63258917"+i,"federico"+i+"@gmail.com"));
+                        ,65972040+i,"miguel"+i+"@gmail.es","WEB"+i,"Federico"+1
+                        ,63258917+i,"federico"+i+"@gmail.com"));
+                */
             }
         }
     }
@@ -41,6 +44,7 @@ public class ClientesManagerTestDataGenerator implements ClientesManager{
      */
     @Override
     public Collection getAllClientes() {
+  
        return clientes;
     }
     

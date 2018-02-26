@@ -5,8 +5,11 @@
  */
 package gestiondeproyectos.logic;
 
+import gestiondeproyectos.ui.controller.ClienteBean;
 import gestiondeproyectos.ui.controller.ProyectosBean;
+import gestiondeproyectos.ui.controller.ServicioBean;
 import java.util.Collection;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -15,7 +18,7 @@ import java.util.Collection;
 public interface ProyectosManager {
     
     /**
-     * 
+     * Interfaz que encapsula los métodos de negocio para la gestión de proyectos.
      * @return devuelve todos los proyectos
      */
     public Collection getAllProyectos();
@@ -32,7 +35,7 @@ public interface ProyectosManager {
      * @param fechaFinal
      * @return 
      */
-    public ProyectosBean setNuevoProyecto(String cliente, String concepto,
+    public ProyectosBean setNuevoProyecto(ClienteBean cliente, String concepto, Collection<ServicioBean> servicios,
             Integer horasEstimadas, Integer horasFinales, float importe,
             float importeFinal, String fechaEntrega, String fechaFinal);
     
@@ -46,5 +49,8 @@ public interface ProyectosManager {
     public Collection getProyectosFiltrados(String clienteF, Boolean pf, Boolean psf); 
     
     public void eliminarProyecto(ProyectosBean proyecto);
+    
+    public void modificarProyecto(ProyectosBean proyecto);
+    
     
 }
