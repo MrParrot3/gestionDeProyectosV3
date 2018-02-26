@@ -563,15 +563,16 @@ public class VentanaProyectosController {
                 else{
                     hf=Integer.parseInt(tfHorasfinales.getText());
                 }
-                
+                /*
                 ServicioBean aux = new ServicioBean();
                 aux.setId(1);
                 aux.setNombre("mantenimiento");
                 aux.setDescripcion("mantener en funcionamiento");
                 servicios.add(aux);
-                
+                */
                 ObservableList<ProyectosBean> proyectosDatos = FXCollections.observableArrayList(proyectosManager.getAllProyectos());
-               
+                
+                
                 ProyectosBean proyecto =tvProyectos.getSelectionModel().getSelectedItem();
                 /*
                 //proyecto.setCliente(tfCliente.getText());
@@ -591,15 +592,17 @@ public class VentanaProyectosController {
                     }
                 }
                 
+                
                 proyecto.setCliente(cliente);
                 proyecto.setConcepto(tfConcepto.getText());
-                proyecto.setServicios(servicios);
+                //proyecto.setServicios(servicios);
                 proyecto.setHorasEstimadas(Integer.parseInt(tfHorasEstimadas.getText()));
                 proyecto.setHorasFinales(hf);
                 proyecto.setImporte(Float.parseFloat(tfImporte.getText()));
                 proyecto.setImporteFinal(imf);
                 proyecto.setFechaEntrega(dpFechaEntrega.getValue().format(formatter));
                 proyecto.setFechaFinal(dpFechaFinal.getValue().format(formatter));
+                
                 
                 logger.info("PROYECTO Cliente nif: "+proyecto.getCliente().getNif());
                 logger.info("PROYECTO Cliente direccion: "+proyecto.getCliente().getDireccion());
@@ -619,6 +622,7 @@ public class VentanaProyectosController {
                 logger.info("PROYECTO Importe Final: "+proyecto.getImporteFinal());
                 logger.info("PROYECTO Fecha Entrega: "+proyecto.getFechaEntrega());
                 logger.info("PROYECTO Fecha Final: "+proyecto.getFechaFinal());
+                
                 
                 proyectosManager.modificarProyecto(proyecto);
                 
