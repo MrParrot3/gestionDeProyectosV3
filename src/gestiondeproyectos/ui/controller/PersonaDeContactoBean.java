@@ -23,7 +23,7 @@ public class PersonaDeContactoBean {
     private SimpleObjectProperty telefono;
     
     public PersonaDeContactoBean(){
-        //this.id = new SimpleIntegerProperty();
+        this.id = new SimpleIntegerProperty();//estaba comentada
         this.nombre = new SimpleStringProperty();
         this.email = new SimpleStringProperty();
         this.telefono = new SimpleObjectProperty();

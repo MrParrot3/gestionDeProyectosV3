@@ -138,8 +138,8 @@ public class VentanaProyectosController {
     @FXML
     private ListView<String> listviewServicios;
     
-    private String pattern="dd/MM/yyyy";
-    private StringConverterDate converter=new StringConverterDate();
+    //private String pattern="dd/MM/yyyy";
+    
     
     private Integer np;
     private ProyectosBean proyecto;
@@ -221,13 +221,16 @@ public class VentanaProyectosController {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ProyectosBean, String> p){
                 String fechaEntre = p.getValue().getFechaEntrega();            
                 int pos=fechaEntre.indexOf("T");   
-                String fechaEntre2 = null;   
+                //String fechaEntre2 = null;   
+                /*
                 if(pos<0){
                     fechaEntre2=formatter2.format(formatter.parse(fechaEntre.substring(0,pos)));
                 }
                 else{
                     fechaEntre2=formatter2.format(formatter.parse(fechaEntre.substring(0,pos)));
                 }
+                */
+                String fechaEntre2=formatter2.format(formatter.parse(fechaEntre.substring(0,pos)));
                 return new SimpleStringProperty(fechaEntre2);
             }
         });
@@ -235,7 +238,9 @@ public class VentanaProyectosController {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ProyectosBean, String> p){
                 String fechaFin = p.getValue().getFechaFinal();            
-                int pos=fechaFin.indexOf("T");   
+                
+                int pos=fechaFin.indexOf("T");  
+                /*
                 String fechaFin2 = null;   
                 if(pos<0){
                     fechaFin2=formatter2.format(formatter.parse(fechaFin.substring(0,pos)));
@@ -243,6 +248,8 @@ public class VentanaProyectosController {
                 else{
                     fechaFin2=formatter2.format(formatter.parse(fechaFin.substring(0,pos)));
                 }
+                */
+                String fechaFin2=formatter2.format(formatter.parse(fechaFin.substring(0,pos)));
                 return new SimpleStringProperty(fechaFin2);
             }
         });
@@ -352,7 +359,8 @@ public class VentanaProyectosController {
         logger.info("Evento del boton añadir en la ventana proyectos");
         btnEliminar.setDisable(true);
         btnModificar.setDisable(true);
-        ClienteBean cliente = null;
+        
+        ClienteBean cliente = new ClienteBean();
         Collection<ServicioBean> servicios = new ArrayList<ServicioBean>();
         ProyectosBean proyecto = new ProyectosBean();
         if(this.tfCliente.getText().trim().equals("") || this.tfConcepto.getText().trim().equals("")
@@ -366,7 +374,6 @@ public class VentanaProyectosController {
         }
         
         else{
-           String ff;
            float imf;
            Integer hf;
            try{              
@@ -382,12 +389,13 @@ public class VentanaProyectosController {
                 else{
                     hf=Integer.parseInt(tfHorasfinales.getText());
                 }
-               
+               /*
                 Integer.parseInt(tfHorasEstimadas.getText());    
                 Float.parseFloat(tfImporte.getText());    
                 dpFechaEntrega.getValue().format(formatter);
                 dpFechaFinal.getValue().format(formatter);
-                
+                */
+               
                 ServicioBean aux = new ServicioBean();
                 aux.setId(1);
                 aux.setNombre("mantenimiento");
@@ -396,17 +404,63 @@ public class VentanaProyectosController {
                 
                 ObservableList<ProyectosBean> proyectosDatos = FXCollections.observableArrayList(proyectosManager.getAllProyectos());
                 ObservableList<ClienteBean> clientesDatos = FXCollections.observableArrayList(clientesManager.getAllClientes());
+                /*
                 for(int i=0; i<clientesDatos.size(); i++){
                     if(tfCliente.equals(clientesDatos.get(i).getNif())){
-                        cliente = clientesDatos.get(i);                   
+                        cliente = clientesDatos.get(i);
+                        logger.info("cliente"+cliente.getNif());
+                        logger.info("persona contacto"+cliente.getContacto().getId());
+                    }
+                }
+                */
+                for(ProyectosBean pro: proyectosDatos){
+                    if(pro.getCliente().getNif().equals(tfCliente.getText())){
+                        cliente = pro.getCliente();
                     }
                 }
                 
+                proyecto.setCliente(cliente);
+                proyecto.setConcepto(tfConcepto.getText());
+                proyecto.setServicios(servicios);
+                proyecto.setHorasEstimadas(Integer.parseInt(tfHorasEstimadas.getText()));
+                proyecto.setHorasFinales(hf);
+                proyecto.setImporte(Float.parseFloat(tfImporte.getText()));
+                proyecto.setImporteFinal(imf);
+                proyecto.setFechaEntrega(dpFechaEntrega.getValue().format(formatter));
+                proyecto.setFechaFinal(dpFechaFinal.getValue().format(formatter));
+                
+                logger.info("PROYECTO Cliente nif: "+proyecto.getCliente().getNif());
+                logger.info("PROYECTO Cliente direccion: "+proyecto.getCliente().getDireccion());
+                logger.info("PROYECTO Cliente email: "+proyecto.getCliente().getEmail());
+                logger.info("PROYECTO Cliente nombre: "+proyecto.getCliente().getNombre());
+                logger.info("PROYECTO Cliente web: "+proyecto.getCliente().getWeb());
+                logger.info("PROYECTO Cliente telefono: "+proyecto.getCliente().getTelefono());
+                logger.info("PROYECTO Cliente contacto id: "+proyecto.getCliente().getContacto().getId());
+                logger.info("PROYECTO Cliente contacto nombre: "+proyecto.getCliente().getContacto().getNombre());
+                logger.info("PROYECTO Cliente contacto email: "+proyecto.getCliente().getContacto().getEmail());
+                logger.info("PROYECTO Cliente contacto telefono: "+proyecto.getCliente().getContacto().getTelefono());
+                logger.info("PROYECTO Concepto: "+proyecto.getConcepto());
+                logger.info("PROYECTO Servicios tamaño: "+proyecto.getServicios().size());
+                logger.info("PROYECTO Horas Estimadas: "+proyecto.getHorasEstimadas());
+                logger.info("PROYECTO Horas Finales: "+proyecto.getHorasFinales());
+                logger.info("PROYECTO Importe: "+proyecto.getImporte());
+                logger.info("PROYECTO Importe Final: "+proyecto.getImporteFinal());
+                logger.info("PROYECTO Fecha Entrega: "+proyecto.getFechaEntrega());
+                logger.info("PROYECTO Fecha Final: "+proyecto.getFechaFinal());
+                
+                /*
                 proyectosManager.setNuevoProyecto(cliente,
                         tfConcepto.getText(), servicios, Integer.parseInt(tfHorasEstimadas.getText()),
                         hf, Float.parseFloat(tfImporte.getText()), imf,
                         dpFechaEntrega.getValue().format(formatter), dpFechaFinal.getValue().format(formatter));
+                */
                 
+                proyectosManager.setNuevoProyecto(proyecto.getCliente(), proyecto.getConcepto(),
+                        proyecto.getServicios(), proyecto.getHorasEstimadas(),
+                        proyecto.getHorasFinales(), proyecto.getImporte(), proyecto.getImporteFinal(),
+                        proyecto.getFechaEntrega(), proyecto.getFechaFinal());
+               
+                logger.info("Proyecto añadido.");
                 proyectos = FXCollections.observableArrayList(proyectosManager.getAllProyectos());
                 tvProyectos.setItems(proyectos);
                 tvProyectos.refresh();
@@ -415,6 +469,7 @@ public class VentanaProyectosController {
                 
                 
             }catch(Exception e){
+                e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Contenido de los campos Horas estimadas o Importe no son validos.");         //decir campos
                 alert.showAndWait();
             }
@@ -479,6 +534,10 @@ public class VentanaProyectosController {
     @FXML
     private void handleButtonModificar(ActionEvent event) {
         logger.info("Evento del boton modificar en la ventana proyectos");
+        
+        ClienteBean cliente = new ClienteBean();
+        Collection<ServicioBean> servicios = new ArrayList<ServicioBean>();
+        
         if(this.tfCliente.getText().trim().equals("") || this.tfConcepto.getText().trim().equals("")
             || this.tfHorasEstimadas.getText().trim().equals("") || 
             this.tfImporte.getText().trim().equals("") || this.dpFechaEntrega.getValue().equals("")){
@@ -487,16 +546,11 @@ public class VentanaProyectosController {
             alert.showAndWait();
         }
         else{
-            String ff;
+            
             float imf;
             Integer hf;
             try{
-                if(dpFechaFinal.getValue()==null){
-                    ff="";
-                }
-                else{
-                    ff=dpFechaFinal.getValue().format(formatter);
-                }
+                
                 if(tfImporteFinal.getText().equals("")){
                     imf=0;
                 }
@@ -509,18 +563,69 @@ public class VentanaProyectosController {
                 else{
                     hf=Integer.parseInt(tfHorasfinales.getText());
                 }
-               
-                ProyectosBean selecProyectos=tvProyectos.getSelectionModel().getSelectedItem();
-                //selecProyectos.setCliente(tfCliente.getText());
-                selecProyectos.setConcepto(tfConcepto.getText());
-                selecProyectos.setHorasEstimadas(Integer.parseInt(tfHorasEstimadas.getText()));
-                selecProyectos.setHorasFinales(hf);
-                selecProyectos.setImporte(Float.parseFloat(tfImporte.getText()));
-                selecProyectos.setImporteFinal(imf);
-                selecProyectos.setFechaEntrega(dpFechaEntrega.getValue().format(formatter));
-                selecProyectos.setFechaFinal(ff);
-                proyectosManager.modificarProyecto(selecProyectos);
                 
+                ServicioBean aux = new ServicioBean();
+                aux.setId(1);
+                aux.setNombre("mantenimiento");
+                aux.setDescripcion("mantener en funcionamiento");
+                servicios.add(aux);
+                
+                ObservableList<ProyectosBean> proyectosDatos = FXCollections.observableArrayList(proyectosManager.getAllProyectos());
+               
+                ProyectosBean proyecto =tvProyectos.getSelectionModel().getSelectedItem();
+                /*
+                //proyecto.setCliente(tfCliente.getText());
+                proyecto.setConcepto(tfConcepto.getText());
+                proyecto.setHorasEstimadas(Integer.parseInt(tfHorasEstimadas.getText()));
+                proyecto.setHorasFinales(hf);
+                proyecto.setImporte(Float.parseFloat(tfImporte.getText()));
+                proyecto.setImporteFinal(imf);
+                proyecto.setFechaEntrega(dpFechaEntrega.getValue().format(formatter));
+                proyecto.setFechaFinal(dpFechaFinal.getValue().format(formatter));
+                proyectosManager.modificarProyecto(selecProyectos);
+                */
+                
+                for(ProyectosBean pro: proyectosDatos){
+                    if(pro.getCliente().getNif().equals(tfCliente.getText())){
+                        cliente = pro.getCliente();
+                    }
+                }
+                
+                proyecto.setCliente(cliente);
+                proyecto.setConcepto(tfConcepto.getText());
+                proyecto.setServicios(servicios);
+                proyecto.setHorasEstimadas(Integer.parseInt(tfHorasEstimadas.getText()));
+                proyecto.setHorasFinales(hf);
+                proyecto.setImporte(Float.parseFloat(tfImporte.getText()));
+                proyecto.setImporteFinal(imf);
+                proyecto.setFechaEntrega(dpFechaEntrega.getValue().format(formatter));
+                proyecto.setFechaFinal(dpFechaFinal.getValue().format(formatter));
+                
+                logger.info("PROYECTO Cliente nif: "+proyecto.getCliente().getNif());
+                logger.info("PROYECTO Cliente direccion: "+proyecto.getCliente().getDireccion());
+                logger.info("PROYECTO Cliente email: "+proyecto.getCliente().getEmail());
+                logger.info("PROYECTO Cliente nombre: "+proyecto.getCliente().getNombre());
+                logger.info("PROYECTO Cliente web: "+proyecto.getCliente().getWeb());
+                logger.info("PROYECTO Cliente telefono: "+proyecto.getCliente().getTelefono());
+                logger.info("PROYECTO Cliente contacto id: "+proyecto.getCliente().getContacto().getId());
+                logger.info("PROYECTO Cliente contacto nombre: "+proyecto.getCliente().getContacto().getNombre());
+                logger.info("PROYECTO Cliente contacto email: "+proyecto.getCliente().getContacto().getEmail());
+                logger.info("PROYECTO Cliente contacto telefono: "+proyecto.getCliente().getContacto().getTelefono());
+                logger.info("PROYECTO Concepto: "+proyecto.getConcepto());
+                logger.info("PROYECTO Servicios tamaño: "+proyecto.getServicios().size());
+                logger.info("PROYECTO Horas Estimadas: "+proyecto.getHorasEstimadas());
+                logger.info("PROYECTO Horas Finales: "+proyecto.getHorasFinales());
+                logger.info("PROYECTO Importe: "+proyecto.getImporte());
+                logger.info("PROYECTO Importe Final: "+proyecto.getImporteFinal());
+                logger.info("PROYECTO Fecha Entrega: "+proyecto.getFechaEntrega());
+                logger.info("PROYECTO Fecha Final: "+proyecto.getFechaFinal());
+                
+                proyectosManager.modificarProyecto(proyecto);
+                
+                proyectos = FXCollections.observableArrayList(proyectosManager.getAllProyectos());
+                tvProyectos.setItems(proyectos);
+                tvProyectos.refresh();
+                limpiarCampos();
                 
             }catch(Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Contenido de los campos Horas estimadas o Importe no son validos.");         //decir campos

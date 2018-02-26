@@ -28,16 +28,14 @@ public class ProyectosManagerImplementation implements ProyectosManager{
     
      //REST proyectos web client
     private ProyectoRESTClient pwebClient;
-    private ServicioRESTClient swebClient;
-    private ClienteRESTClient cwebClient;
+
     private static final Logger LOGGER=Logger.getLogger("javafxapplicationud3example");
     
     private static final Logger logger = Logger.getLogger("implementation.class");
     
     public ProyectosManagerImplementation(){
         pwebClient = new ProyectoRESTClient();
-        swebClient = new ServicioRESTClient();
-        cwebClient = new ClienteRESTClient();
+
     }
     
     
@@ -76,7 +74,29 @@ public class ProyectosManagerImplementation implements ProyectosManager{
         proyecto.setImporteFinal(importeFinal);
         proyecto.setFechaEntrega(fechaEntrega);
         proyecto.setFechaFinal(fechaFinal);
-        logger.info(proyecto.getNProyecto()+" "+proyecto.getCliente().getNif()+" "+proyecto.getConcepto());
+        
+        logger.info("PROYECTO Cliente nif: "+proyecto.getCliente().getNif());
+        logger.info("PROYECTO Cliente direccion: "+proyecto.getCliente().getDireccion());
+        logger.info("PROYECTO Cliente email: "+proyecto.getCliente().getEmail());
+        logger.info("PROYECTO Cliente nombre: "+proyecto.getCliente().getNombre());
+        logger.info("PROYECTO Cliente web: "+proyecto.getCliente().getWeb());
+        logger.info("PROYECTO Cliente telefono: "+proyecto.getCliente().getTelefono());
+        logger.info("PROYECTO Cliente contacto id: "+proyecto.getCliente().getContacto().getId());
+        logger.info("PROYECTO Cliente contacto nombre: "+proyecto.getCliente().getContacto().getNombre());
+        logger.info("PROYECTO Cliente contacto email: "+proyecto.getCliente().getContacto().getEmail());
+        logger.info("PROYECTO Cliente contacto telefono: "+proyecto.getCliente().getContacto().getTelefono());
+        logger.info("PROYECTO Concepto: "+proyecto.getConcepto());
+        logger.info("PROYECTO Servicios tamaño: "+proyecto.getServicios().size());
+        logger.info("PROYECTO Horas Estimadas: "+proyecto.getHorasEstimadas());
+        logger.info("PROYECTO Horas Finales: "+proyecto.getHorasFinales());
+        logger.info("PROYECTO Importe: "+proyecto.getImporte());
+        logger.info("PROYECTO Importe Final: "+proyecto.getImporteFinal());
+        logger.info("PROYECTO Fecha Entrega: "+proyecto.getFechaEntrega());
+        logger.info("PROYECTO Fecha Final: "+proyecto.getFechaFinal());
+        
+        logger.info("ManagerImplementation añadir proyecto");
+        
+        
         LOGGER.log(Level.INFO,"ProyectosManager: Creating proyecto {0}.",proyecto.getNProyecto());
         pwebClient.create_XML(proyecto);
         return proyecto;

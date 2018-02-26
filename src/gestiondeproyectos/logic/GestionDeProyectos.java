@@ -2,6 +2,7 @@
 package gestiondeproyectos.logic;
 
 import gestiondeproyectos.ui.controller.VentanaFacturasController;
+import gestiondeproyectos.ui.controller.VentanaProyectosController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,9 +21,9 @@ public class GestionDeProyectos extends Application {
         ProyectosManager proyectosManager = new ProyectosManagerImplementation();
         ClientesManager clientesManager = new   ClientesManagerTestDataGenerator();
         
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/gestiondeproyectos/ui/view/ventanaFacturas.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/gestiondeproyectos/ui/view/ventanaProyectos.fxml"));
         Parent root = (Parent) loader.load();
-        VentanaFacturasController controlador = loader.getController();
+        VentanaProyectosController controlador = loader.getController();
        
         controlador.setManager(facturasManager,proyectosManager,clientesManager);
         controlador.setStage(stage);
